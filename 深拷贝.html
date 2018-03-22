@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>深拷贝</title>
+</head>
+<body>
+<script>
+    function deepCopy(p,c){
+        var i;
+        c = c||{};
+        for(i in p){
+            if(p.hasOwnProperty(i)){
+                if(typeof(p[i])==="object"){
+                    debugger
+                    c[i] = Array.isArray(p[i])?[]:{};
+                    deepCopy(p[i],c[i]);
+                }else{
+                    c[i] = p[i];
+            }
+            }
+        }
+        return c;
+    };
+        var dad = {
+            count:[1,2,3],
+            game:{Inside:true}
+        };
+    var kid = deepCopy(dad);
+kid.count.push(4);   
+kid.count.toString(); // "1,2,3,4"
+dad.count.toString(); // "1,2,3"
+dad.game === kid.game;    // false
+
+</script>
+</body>
+</html>

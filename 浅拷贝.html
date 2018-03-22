@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浅拷贝</title>
+</head>
+<body>
+<script>
+     function shallowCopy(p,c){
+            var i;
+            c = c||{};
+            for(i in p){
+                debugger
+                if(p.hasOwnProperty(i)){
+                    c[i] = p[i];
+                }
+            }
+            debugger
+            return c;
+        };
+        var dad = {
+            count:[1,2,3],
+            game:{Inside:true}
+        };
+    var kid = shallowCopy(dad);
+kid.count.push(4);   
+kid.count.toString(); // "1,2,3,4"
+dad.count.toString(); // "1,2,3,4"
+dad.game === kid.game;    // true
+
+</script>
+</body>
+</html>
